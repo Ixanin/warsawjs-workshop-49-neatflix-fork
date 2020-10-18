@@ -41,7 +41,7 @@ export default {
 }
 </script>
 ------------------------------------------------------
-<style>
+<style lang="scss">
 html,
 body {
   margin: 0;
@@ -55,5 +55,8 @@ body {
   color: #2c3e50;
   height: 100vh;
   width: 100vw;
+  .shows-list {
+    padding: 15px;
+  }
 }
 </style>
