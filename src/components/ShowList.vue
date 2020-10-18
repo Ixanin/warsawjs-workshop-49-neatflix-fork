@@ -1,31 +1,45 @@
 <template>
-  <div
-      class="shows-list-item"
-      :style="{backgroundImage: `url(${show.imgURL})`}"
-      v-on:click="$emit('showDetails', show.id)"
-  >
-    <div class="info-wrapper">
-      <div v-if="showSummary !== show.id">
-        <h2 class="title">{{show.name}}</h2>
-        <div class="year-rating-wrapper">
-          <div class="year">{{show.premiered}}</div>
-          <div class="rating">{{show.rating}}</div>
-        </div>
-      </div>
-      <p v-if="showSummary === show.id">{{show.summary}}</p>
+  <div class="container">
+    <div
+        v-for="show in shows"
+        :key="show.id"
+    >
+      <ShowsListItem
+          :show="show"
+          :showSummary="showSummary"
+          v-on:showDetails="showDetails"
+      />
     </div>
   </div>
 </template>
 
 <script>
+    import ShowsListItem from '@/components/ShowsListItem';
+
     export default {
-        name: 'ShowsListItem',
-        props: ['show', 'showSummary'],
+        name: 'ShowsList',
+        components: {
+            ShowsListItem
+        },
+        props: ['shows'],
         methods: {
             onClick() {
                 this.showSummary = !this.showSummary;
+            },
+            showDetails(showId) {
+                if (showId === this.showSummary) {
+                    this.showSummary = false;
+
+                } else {
+                    this.showSummary = showId;
+                }
             }
-        }
+        },
+        data() {
+            return {
+                showSummary: false,
+            }
+        },
     }
 </script>
 
@@ -64,6 +78,9 @@
         font-weight: bold;
       }
     }
+  }
+  .container {
+    display: flex;
   }
 
 </style>
