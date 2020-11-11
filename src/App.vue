@@ -1,9 +1,17 @@
 <template>
   <div id="app">
-    <SearchInput
-        default-value=""
-        v-on:search="search"
-    />
+    <TopNavigation>
+      <template #left>
+        <h1>Neatflix</h1>
+      </template>
+      <template #right>
+        <SearchInput
+            default-value=""
+            v-on:search="search"
+        />
+      </template>
+    </TopNavigation>
+
     <ShowsList :shows="matched"/>
   </div>
 </template>
@@ -11,12 +19,14 @@
 <script>
     import ShowsList from '@/components/ShowList'
     import SearchInput from './components/SearchInput';
+    import TopNavigation from './components/TopNavigation';
 
     export default {
         name: 'App',
         components: {
             SearchInput,
             ShowsList,
+            TopNavigation,
         },
         methods: {
             search(query) {
@@ -80,7 +90,11 @@
                 },]
             }
         },
-        // created() {},
+        created() {
+            fetch(`https://api.tvmaze.com/shows?page=0`)
+              .then(response => response.json())
+              .then(json => this.shows = json)
+        },
         // destroyed() {},
     }
 </script>

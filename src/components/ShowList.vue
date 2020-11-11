@@ -46,6 +46,7 @@
 <style scoped lang="scss">
   .container {
     display: flex;
+    flex-wrap: wrap;
   }
 
 </style>

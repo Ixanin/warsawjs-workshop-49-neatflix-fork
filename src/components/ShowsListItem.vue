@@ -1,7 +1,7 @@
 <template>
   <div
       class="shows-list-item"
-      :style="{backgroundImage: `url(${show.imgURL})`}"
+      :style="{backgroundImage: `url(${show.image.medium})`}"
       v-on:click="$emit('showDetails', show.id)"
   >
     <div class="info-wrapper">
@@ -9,7 +9,7 @@
         <h2 class="title">{{show.name}}</h2>
         <div class="year-rating-wrapper">
           <div class="year">{{show.premiered}}</div>
-          <div class="rating">{{show.rating}}</div>
+          <div class="rating">{{show.rating.average}}</div>
         </div>
       </div>
       <p v-if="showSummary === show.id">{{show.summary}}</p>
@@ -59,6 +59,7 @@
       }
 
       & .rating {
+        z-index: 0;
         color: rgb(236, 213, 4);
         transform: scale(1.1);
         font-weight: bold;
