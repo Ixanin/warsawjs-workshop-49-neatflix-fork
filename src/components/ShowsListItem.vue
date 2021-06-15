@@ -15,7 +15,7 @@
       <p v-if="showSummary === show.id">
          <span v-html="show.summary"></span>
       </p>
-      
+
     </div>
   </div>
 </template>
