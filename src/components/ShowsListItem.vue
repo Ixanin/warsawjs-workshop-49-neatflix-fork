@@ -12,7 +12,10 @@
           <div class="rating">{{show.rating.average}}</div>
         </div>
       </div>
-      <p v-if="showSummary === show.id">{{show.summary}}</p>
+      <p v-if="showSummary === show.id">
+         <span v-html="show.summary"></span>
+      </p>
+      
     </div>
   </div>
 </template>
